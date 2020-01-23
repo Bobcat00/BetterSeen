@@ -1,0 +1,10 @@
+name: BetterSeen
+main: com.bobcat00.betterseen.BetterSeen
+version: 0.10
+author: Bobcat00
+depend: [Essentials]
+
+commands:
+   seen:
+      description: Displays information about a player.
+      usage: /<command> player
