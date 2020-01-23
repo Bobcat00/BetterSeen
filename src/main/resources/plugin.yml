@@ -3,7 +3,7 @@ main: com.bobcat00.betterseen.BetterSeen
 version: ${project.version}
 author: Bobcat00
 depend: [Essentials]
-
+api-version: 1.15
 commands:
    seen:
       description: Displays information about a player.
