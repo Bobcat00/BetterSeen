@@ -2,6 +2,7 @@ package com.bobcat00.betterseen;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 //import org.bukkit.BanEntry;
 import org.bukkit.Bukkit;
@@ -27,7 +28,7 @@ public class CommandSeen implements CommandExecutor
 
     public CommandSeen(BetterSeen plugin)
     {
-        this.plugin = plugin; // Store the plugin in situations where you need it.
+        this.plugin = plugin;
     }
     
     private static String formatTime(long time)
@@ -45,7 +46,6 @@ public class CommandSeen implements CommandExecutor
     	
     	Player        onlinePlayer  = null;
     	OfflinePlayer offlinePlayer = null;
-    	User          user          = null;
     	
     	boolean online        = false;
     	boolean permSeen      = false;
@@ -94,7 +94,7 @@ public class CommandSeen implements CommandExecutor
     		if (onlinePlayer != null)
     		{
     			// Player is online
-    			user = EssentialsInterface.getUser(onlinePlayer.getName()); // Essentials data
+    			User user = EssentialsInterface.getUser(onlinePlayer.getName()); // Essentials data
         		firstPlayed = onlinePlayer.getFirstPlayed();
         		lastPlayed  = onlinePlayer.getLastPlayed();
         		if (!user.isVanished() || permVanishsee)
@@ -105,14 +105,21 @@ public class CommandSeen implements CommandExecutor
     		if (!online)
     		{
     			// Player is vanished, offline, or has never been on the server
-	    		offlinePlayer = this.plugin.getServer().getOfflinePlayer(args[0]);
-	    		user = EssentialsInterface.getUser(args[0]); // Essentials data
+    		    User user = EssentialsInterface.getUser(args[0]); // Essentials data
+    		    if (user == null)
+    		    {
+    		        return true;
+    		    }
+    		    UUID uuid = user.getConfigUUID();
+    		    if (uuid == null)
+    		    {
+    		        return true;
+    		    }
+    		    offlinePlayer = this.plugin.getServer().getOfflinePlayer(uuid);
 	    		firstPlayed = offlinePlayer.getFirstPlayed();
 	    		lastPlayed  = offlinePlayer.getLastPlayed();
 	    		if (lastPlayed == 0L)
 	    		{
-	    			// Player has never been on the server
-	    			//sender.sendMessage(ChatColor.RED + args[0] + ChatColor.GOLD + " has never been on this server.");
 	    			return true;
 	    		}
 	    		
