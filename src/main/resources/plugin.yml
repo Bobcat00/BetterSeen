@@ -1,6 +1,6 @@
 name: BetterSeen
 main: com.bobcat00.betterseen.BetterSeen
-version: 0.10
+version: ${project.version}
 author: Bobcat00
 depend: [Essentials]
 
