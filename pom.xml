@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.bobcat00</groupId>
   <artifactId>BetterSeen</artifactId>
-  <version>1.00-TEST</version>
+  <version>1.00</version>
   <build>
     <resources>
       <resource>
@@ -44,10 +44,9 @@
   </repositories>
   <dependencies>
     <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>bukkit</artifactId>
-      <version>1.15-R0.1-SNAPSHOT</version>
-      <type>jar</type>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+      <version>1.15.1-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
