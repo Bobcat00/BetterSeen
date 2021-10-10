@@ -4,10 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-//import org.bukkit.BanEntry;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-//import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,10 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-//import com.earth2me.essentials.IEssentials;
 import com.earth2me.essentials.User;
-//import com.earth2me.essentials.craftbukkit.BanLookup;
-//import com.earth2me.essentials.utils.DateUtil;
 
 import net.ess3.api.IEssentials;
 
@@ -49,7 +44,6 @@ public class CommandSeen implements CommandExecutor
     	
     	boolean online        = false;
     	boolean permSeen      = false;
-    	boolean permExtra     = false;
     	boolean permVanishsee = false;
     	
     	if (cmd.getName().equalsIgnoreCase("seen"))
@@ -57,13 +51,11 @@ public class CommandSeen implements CommandExecutor
         	if (sender instanceof Player)
         	{
         		permSeen      = sender.hasPermission("essentials.seen");
-        		permExtra     = sender.hasPermission("essentials.seen.extra");
         		permVanishsee = sender.hasPermission("essentials.vanish.see");
         	}
         	else
         	{
         		permSeen      = true;
-        		permExtra     = true;
         		permVanishsee = true;
         	}
         	
@@ -126,20 +118,6 @@ public class CommandSeen implements CommandExecutor
     		}
     		
     		// Now we finally output stuff
-    		
-    		if (permExtra)
-    		{
-	    		// UUID
-	    		if (online)
-	    		{
-	    			sender.sendMessage(ChatColor.GOLD + " - UUID: " + ChatColor.RESET + onlinePlayer.getUniqueId().toString());
-	    		}
-	    		else
-	    		{
-	    			sender.sendMessage(ChatColor.GOLD + " - UUID: " + ChatColor.RESET + offlinePlayer.getUniqueId().toString());
-	    		}
-	    		
-    		}
     		
     		// First and last played
     		if (firstPlayed != 0L) sender.sendMessage(ChatColor.GOLD + " - Joined: "      + ChatColor.RESET + formatTime(firstPlayed));
